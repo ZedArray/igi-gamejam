@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqsx4blgl2ed5"]
+
+[ext_resource type="Script" path="res://upgrade_menu.gd" id="1_i1b1c"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i1b1c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1277.0
+offset_bottom = 719.0
+color = Color(0, 0, 0, 0.270588)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_top = 285.0
+offset_right = 1277.0
+offset_bottom = 458.0
+alignment = 1
+
+[node name="Damage" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Upgrade Damage"
+
+[node name="Attack Speed" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Upgrade Attack Speed"
+
+[node name="Movement Speed" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Upgrade Movement Speed"
+
+[node name="Attack Range" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Upgrade Attack Range"
+
+[node name="Exp Gain" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Upgrade EXP Gain"
+
+[connection signal="pressed" from="HBoxContainer/Damage" to="." method="_on_damage_pressed"]
+[connection signal="pressed" from="HBoxContainer/Attack Speed" to="." method="_on_attack_speed_pressed"]
+[connection signal="pressed" from="HBoxContainer/Movement Speed" to="." method="_on_movement_speed_pressed"]
+[connection signal="pressed" from="HBoxContainer/Attack Range" to="." method="_on_attack_range_pressed"]
+[connection signal="pressed" from="HBoxContainer/Exp Gain" to="." method="_on_exp_gain_pressed"]

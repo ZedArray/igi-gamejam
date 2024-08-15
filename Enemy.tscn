@@ -1,19 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://cc8s4kvbhtxq0"]
+[gd_scene load_steps=6 format=3 uid="uid://cc8s4kvbhtxq0"]
 
-[ext_resource type="Texture2D" uid="uid://cvvrvmmar6op3" path="res://icon.svg" id="1_62arj"]
 [ext_resource type="Script" path="res://Enemy.gd" id="1_jvki6"]
+[ext_resource type="Texture2D" uid="uid://g1e52tpashjq" path="res://Zombie Apocalypse Tileset/Organized separated sprites/Skinny Walking Zombie Animation/Zombie-Tileset---_0397_Capa-398.png" id="2_cgmho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ed3c4"]
-size = Vector2(14, 14)
+size = Vector2(8, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ave6p"]
+size = Vector2(4, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n48he"]
+size = Vector2(8, 14)
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_layer = 6
+collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_jvki6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_62arj")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_cgmho")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ed3c4")
+
+[node name="Stuck Check" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stuck Check"]
+shape = SubResource("RectangleShape2D_ave6p")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_n48he")
+
+[node name="Hurt Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Damage Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Hurt Timer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="Damage Timer" to="." method="_on_damage_timer_timeout"]
